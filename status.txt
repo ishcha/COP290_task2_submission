@@ -1,0 +1,23 @@
+The status of the project is contained in this file. The project currently has the following features.
+    1. It has single-player and dual-player game versions.
+    2. Single-player game:
+        1. The single-player game compiles correctly.
+        2. The game runs correctly, any number of times. 
+        3. It has appropriate sound-effects for the various scenarios. 
+        4. The graphics are correctly rendered using SDL.
+        5. The player can be moved using arrow keys (only over the roads). 
+    3. Dual-player game:
+        1. The dual-player version of the game compiles correctly. 
+        2. The dual-player version establishes server and client ENet (UDP) hosts correctly.
+        3. The UDP socket correctly transfers the changes in the game object between the server and the client, as UDP packets.
+    
+Current problems:
+1. The dual-player game, when socket over localhost between two terminals representing the server and the client, crashes frequently.
+2. On Isha's laptop (having 4GB RAM), the laptop screen freezes everytime the game executables are run. 
+3. On Isha's friend's laptop (having 8GB RAM), the server process gets killed by the OS, very close to the start of the process. The client process disconnects and closes naturally. Interestingly, even the concurrently running Google Chrome process gets killed.
+4. The suspected issue is in memory footprint of the executable. The dual-player game is the same as the single-player game, apart from having two players. So the only difference is due to the ENet communication. Thus, we suspect the ENet connection to be producing some unacceptable memory footprint. But this has not been verified or detected yet.
+5. The real problem with the otherwise complete dual-player game is not clear yet, and I am constantly probing the code for that.
+
+Conclusion: 
+1. The single-player game is complete, compiles correctly and runs as per requirement, as many number of times. Extensive testing has been done for this version.
+2. The dual-player game is complete, compiles correctly, but doesn't run correctly on localhost. Suspected issue is in the socket's memory footprint. This version couldn't be tested properly, due to the runtime issues described already.
